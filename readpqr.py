@@ -1,6 +1,5 @@
 """
-Thank you to the following github link for the information to use and modify this .py file
-https://github.com/MichalBosy/FEM_BEM_coupling/blob/8c29421d51c2c1f83f06a35878186af188f9e5e3/Poisson-Boltzmann/readpqr.py
+Based on the Github repository at [https://github.com/MichalBosy/FEM_BEM_coupling/blob/8c29421d51c2c1f83f06a35878186af188f9e5e3/Poisson-Boltzmann/readpqr.py]
 """
 
 import numpy as np

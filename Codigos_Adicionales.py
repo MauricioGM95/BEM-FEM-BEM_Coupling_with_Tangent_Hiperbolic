@@ -1,6 +1,5 @@
 """
-Thank you to the following github link for the information how to create the surface mesh.
-https://github.com/SDSearch/bem_electrostatics
+Based on the Github repository at [https://github.com/SDSearch/bem_electrostatics] for the information how to create the surface mesh.
 """
 import parmed.amber
 import numpy as np 
@@ -14,17 +13,17 @@ import os
       
 def MallaSuperficial(file,de,pr,f,FE,FS,f0):
     # file: file name in text format
-    # FE: address where the pqr is located. Ex: 'Sphere/PQR/'
-    # FS: address where the mesh is saved. Ex: 'Sphere/Mallas_S/'
+    # FE: path where the pqr is located. Ex: 'Sphere/PQR/'
+    # FS: path where the mesh is saved. Ex: 'Sphere/Mallas_S/'
     # Choice of mesh creation
     if f=='n':
         fe= "nanoshaper" 
     elif f=='m':
         fe= "msms"    
     protein = bem_electrostatics.solute(
-                solute_file_path="/home/mauricioguerrero/"+FE+file+".pqr", #pqr to generate the mesh
+                solute_file_path="/home/mauricioguerrero/"+FE+file+".pqr", #path of pqr to generate the mesh
                 save_mesh_build_files = True,  
-                mesh_build_files_dir = "/home/mauricioguerrero/"+FS, # folder to save the mesh
+                mesh_build_files_dir = "/home/mauricioguerrero/"+FS, # path to save the mesh
                 mesh_density = de, # density(msms) or length(nanoshaper)
                 mesh_probe_radius = pr, # test sphere radio
                 mesh_generator = fe, # method to create the mesh
@@ -39,8 +38,8 @@ def MallaSuperficial(file,de,pr,f,FE,FS,f0):
 
 def MallaVolumetrica(file,file1_O,file2_O,file3_O,F,Tm,Vol,FS,FSV):
     # file: name of the final file in text format
-    # FS: address where the surface mesh is located. Ex: 'Sphere/Mallas_S/'
-    # FSV: address where the volumetric mesh is saved. Ex: 'Sphere/Mallas_V/'
+    # FS: path where all surface mesh is located. Ex: 'Sphere/Mallas_S/'
+    # FSV: path where the volumetric mesh is saved. Ex: 'Sphere/Mallas_V/'
     # file1_O,file2_O,file3_O: Inner, outer and intermediate surface mesh respectively.
     # Tm: The numerical value allows you to choose the minimum length of the tetrahedron to generate the vertices of the mesh, with Tm>=1.0
     # F: Choice of volumetric mesh model 1M, 2M or 3M
@@ -84,9 +83,9 @@ def MallaVolumetrica(file,file1_O,file2_O,file3_O,F,Tm,Vol,FS,FSV):
 # Case to create the .pqr of the Mobley molecules
 def PQR_Moleculas_Pequeñas(file,d,FP,FC,FS):  
     # file: file name in text format
-    #FP: address where the prmcrd folder is located. Ex: 'Mobley/prmcrd/'
-    #FC: address where the charged_mol2files folder is located. Ex: 'Mobley/charged_mol2files/'
-    #FS: address where the pqr will be saved. Ex: 'Mobley/PQR/'
+    #FP: path where the prmcrd folder is located. Ex: 'Mobley/prmcrd/'
+    #FC: path where the charged_mol2files folder is located. Ex: 'Mobley/charged_mol2files/'
+    #FS: path where the pqr will be saved. Ex: 'Mobley/PQR/'
     #d: additional distance for the radius to create the mesh with exclusion  radius
     
     #Extraction of the radius information from '.prmtop'
@@ -163,8 +162,8 @@ def PQR_Moleculas_Pequeñas(file,d,FP,FC,FS):
 #Modification of the .pqr of large proteins (type 1A3N) extracted from PDB2PQR, so that the information can be read correctly
 def NuevoPQR(file,d,FE,FS):      
     # file: file name in text format
-    # FE: address where the pqr is located. Ex: 'Binding_Energy/PQR/'
-    # FS: address where the modified pqr is saved. Ex: 'Binding_Energy/Mallas_S/'
+    # FE: path where the pqr is located. Ex: 'Binding_Energy/PQR/'
+    # FS: path where the modified pqr is saved. Ex: 'Binding_Energy/Mallas_S/'
     # d: additional distance for the radius to create the mesh with exclusion radius
     Tex = []
     posX = []
@@ -221,8 +220,8 @@ def NuevoPQR(file,d,FE,FS):
 # Case .pqr for large molecules like 1SE0 and 1BBZ
 def PQR_Moleculas_de_Union(file,d,FE,FS):  
     # file: file name in text format
-    # FE: address where the prmtop and pdb files are located. Ex: 'Binding_Energy/top/'
-    # FS: address where the modified pqr is saved. Ex: 'Binding_Energy/PQR2/'
+    # FE: path where the prmtop and pdb files are located. Ex: 'Binding_Energy/top/'
+    # FS: path where the modified pqr is saved. Ex: 'Binding_Energy/PQR2/'
     # d: additional distance for the radius to create the mesh with exclusion radius
     if file=='1SE0-L':
         N1='PROA'

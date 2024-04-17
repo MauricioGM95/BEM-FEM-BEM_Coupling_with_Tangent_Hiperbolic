@@ -1,6 +1,5 @@
 """
-Thank you to the following github link for the information to use and modify this .py file
-https://github.com/JM-data/Unsupervised_DeepFunctionalMaps_ICCV19/blob/master/Calculate_LB/readOFF.py
+Based on the Github repository at [https://github.com/JM-data/Unsupervised_DeepFunctionalMaps_ICCV19/blob/master/Calculate_LB/readOFF.py]
 """
 
 import numpy as np

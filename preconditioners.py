@@ -1,7 +1,6 @@
 """
-Thank you to the following github link for the information to use and modify this .py file
-https://github.com/barbagroup/bempp_exafmm_paper/blob/master/repro-pack/bempp_pbs/preconditioners.py
-"""
+Based on the Github repository at [https://github.com/barbagroup/bempp_exafmm_paper/blob/master/repro-pack/bempp_pbs/preconditioners.py]
+""" 
 
 """
 Implementation of different preconditioners. Bempp-cl uses mass-matrix preconditioner by default.
