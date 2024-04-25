@@ -81,7 +81,7 @@ def MallaVolumetrica(file,file1_O,file2_O,file3_O,F,Tm,Vol,FS,FSV):
 
 
 # Case to create the .pqr of the Mobley molecules
-def PQR_Moleculas_Pequeñas(file,d,FP,FC,FS):  
+def PQR_Moleculas_Pequenas(file,d,FP,FC,FS):  
     # file: file name in text format
     #FP: path where the prmcrd folder is located. Ex: 'Mobley/prmcrd/'
     #FC: path where the charged_mol2files folder is located. Ex: 'Mobley/charged_mol2files/'
