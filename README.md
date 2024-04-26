@@ -18,6 +18,9 @@ To calculate the solvation energy of a particular solute, only the available cod
 
 Additionally, the Iterative `Code_HT_Mobley.py` and `Iterative Code_HT_TanH_Sphere.py` codes are an alternative to calculate the energy of each solute iteratively instead of individually.
 
+### Calculation of Coulomb energy
+In the `Addition_codes.ipynb` code, there is the information to calculate the coulomb energy of the ligand-proteins and then calculate the binding energy.
+
 Pendiente 
 1 Hacer el README
 2 Corroborar resultados de cavidad de BB y BFB en el paper
