@@ -16,7 +16,7 @@ To calculate the solvation energy of a particular solute, only the available cod
 - `BEM_BEM_Coupling_(Cavity).ipynb`
 - `BEM_FEM_BEM_Coupling_(Cavity)_(Variable_Permittivity).ipynb`
 
-The Iterative `Code_HT_Mobley.py` and `Iterative Code_HT_TanH_Sphere.py` codes are an alternative to calculate the energy of each solute iteratively instead of individually.
+Additionally, the Iterative `Code_HT_Mobley.py` and `Iterative Code_HT_TanH_Sphere.py` codes are an alternative to calculate the energy of each solute iteratively instead of individually.
 
 Pendiente 
 1 Hacer el README
