@@ -1,6 +1,7 @@
 # BEM-FEM-BEM_Coupling_with_Tangent_Hiperbolic
 An alternative to calculate the coupling of BEM-FEM-BEM with variable permittivity using the hyperbolic tangent as a model, applied for different types of solutes.
 
+### File creation
 To calculate the solvation or binding energy for each solute, you must first create the following files in this order:
 - We first create the `.pqr` files for each solute, where the `Creation_of_PQR_files_General.ipynb` code is executed.
 - After generating the `.pqr` files, the code `Creation_of_Surface_Meshes_General.ipynb` is used to generate the surface meshes of each solute.
