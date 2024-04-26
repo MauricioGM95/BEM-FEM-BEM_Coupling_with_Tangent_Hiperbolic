@@ -9,6 +9,8 @@ Then of generating the surface meshes, the code Creation_of_Volumetric_Meshes_Ge
 
 Finally with the volumetric meshes, the code Creation_Alpha_files_General.ipynb must be executed to generate the text files of the alpha geometric parameter of each solute to work with the variable permittivity model.
 
+The Iterative Code_HT_Mobley.py and Iterative Code_HT_TanH_Sphere.py codes are an alternative to calculate the energy of each solute iteratively instead of individually.
+
 Pendiente 
 1 Hacer el README
 2 Corroborar resultados de cavidad de BB y BFB en el paper
