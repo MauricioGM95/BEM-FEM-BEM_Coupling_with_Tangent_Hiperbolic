@@ -5,9 +5,9 @@ To create the .pqr files for each solute, the code Creation_of_PQR_files_General
 
 After generating the .pqr files, the code Creation_of_Surface_Meshes_General.ipynb is used to generate the surface meshes of each solute.
 
-Then generating the surface meshes, the code Creation_of_Volumetric_Meshes_General.ipynb is used to generate the volumetric meshes of each solute.
+Then of generating the surface meshes, the code Creation_of_Volumetric_Meshes_General.ipynb is used to generate the volumetric meshes of each solute.
 
-Finally, once the volumetric meshes, the code Creation_Alpha_files_General.ipynb must be executed to generate the text files of the alpha geometric parameter of each solute to work with the variable permittivity model.
+Finally with the volumetric meshes, the code Creation_Alpha_files_General.ipynb must be executed to generate the text files of the alpha geometric parameter of each solute to work with the variable permittivity model.
 
 Pendiente 
 1 Hacer el README
