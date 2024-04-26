@@ -21,12 +21,12 @@ Additionally, the Iterative `Code_HT_Mobley.py` and `Iterative Code_HT_TanH_Sphe
 ### Calculation of Coulomb energy
 In the `Addition_codes.ipynb` code, there is the information to calculate the coulomb energy of the ligand-proteins and then calculate the binding energy.
 
-Pendiente 
-1 Hacer el README
-2 Corroborar resultados de cavidad de BB y BFB en el paper
-3 .py para codigo de Union
+### Pendiente 
+1. Corregir el README
+2. Corroborar resultados de cavidad de BB y BFB en el paper
+3. .py para codigo de Union
 
-Opcional
-1 Excel
-2 Grafico opcional 1
-3 Visualizacion corte BFB
+### Opcional
+1. Excel
+2. Grafico opcional 1
+3. Visualizacion corte BFB
