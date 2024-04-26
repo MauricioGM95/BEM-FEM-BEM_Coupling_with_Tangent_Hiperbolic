@@ -1,4 +1,4 @@
-# BEM-FEM-BEM_Coupling_whit_Tangent_Hiperbolic
+# BEM-FEM-BEM_Coupling_with_Tangent_Hiperbolic
 An alternative to calculate the coupling of BEM-FEM-BEM with variable permittivity using the hyperbolic tangent as a model, applied for different types of solutes.
 
 To create the .pqr files for each solute, the code Creation_of_PQR_files_General.ipynb must be executed.
