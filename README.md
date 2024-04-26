@@ -8,6 +8,14 @@ To calculate the solvation or binding energy for each solute, you must first cre
 - Then of generating the surface meshes, the code `Creation_of_Volumetric_Meshes_General.ipynb` is used to generate the volumetric meshes of each solute.
 - Finally with the volumetric meshes, the code `Creation_Alpha_files_General.ipynb` must be executed to generate the text files of the alpha geometric parameter of each solute to work with the variable permittivity model.
 
+### Calculation of solvation energy
+To calculate the solvation energy of a particular solute, only the available codes are executed:
+- `BEM_BEM_Coupling.ipynb`
+- `BEM_BEM_BEM_Coupling.ipynb`
+- `BEM_FEM_BEM_Coupling_(Variable_Permittivity).ipynb`
+- `BEM_BEM_Coupling_(Cavity).ipynb`
+- `BEM_FEM_BEM_Coupling_(Cavity)_(Variable_Permittivity).ipynb`
+
 The Iterative `Code_HT_Mobley.py` and `Iterative Code_HT_TanH_Sphere.py` codes are an alternative to calculate the energy of each solute iteratively instead of individually.
 
 Pendiente 
