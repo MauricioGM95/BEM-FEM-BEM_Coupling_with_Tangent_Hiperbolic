@@ -814,7 +814,7 @@ def Caso_BEMFEMBEM(PQR,MeshV,es,ei,em,ks,ki,kp,Tol,Res,Va,Asb,FileA):
     # Solution by GMRES.
     from scipy.sparse.linalg import gmres
     start1 = time.time()
-    soln, info = gmres(blocked, rhs, M=P, callback=count_iterations,tol=Tol, maxiter=3000, restart=Res) #120 300 
+    soln, info = gmres(blocked, rhs, M=P, callback=count_iterations,tol=Tol, maxiter=3000, restart=Res)  
     end1 = time.time() 
 
     # Time to solve the equation.
@@ -1371,7 +1371,7 @@ def Caso_BEMFEMBEM_Cavidades(PQR,MeshV,Mesh_C,es,ei,em,ks,ki,kp,Tol,Res,Va,Asb,F
     # Solution by GMRES.
     from scipy.sparse.linalg import gmres
     start1 = time.time()
-    soln, info = gmres(blocked, rhs, M=P, callback=count_iterations,tol=Tol, maxiter=3000, restart=Res)   #120 300
+    soln, info = gmres(blocked, rhs, M=P, callback=count_iterations,tol=Tol, maxiter=3000, restart=Res)  
     end1 = time.time() 
 
     # Time to solve the equation.
