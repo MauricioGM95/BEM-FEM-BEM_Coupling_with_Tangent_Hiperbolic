@@ -27,5 +27,5 @@ In the `Addition_codes.ipynb` code, there is the information to calculate the co
    
 ### Opcional
 1. Excel
-2. Grafico opcional 1
+2. Caso de visualizacion de graficos del paper
 3. Visualizacion corte BFB
