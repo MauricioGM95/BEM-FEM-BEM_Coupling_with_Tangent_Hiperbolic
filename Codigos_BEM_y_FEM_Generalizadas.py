@@ -60,6 +60,20 @@ class Fun_ei_Tangente_Hiperbolica(dolfin.UserExpression):
             v[0] = 0.5-0.5*np.tanh(kp*(alfa-0.5)) #Hyperbolic tangent function for kp other than infinity.         
     def value_shape(self):
         return ()  
+
+from scipy import special
+class Fun_ei_Convolucion_Gaussiana(dolfin.UserExpression):  
+    def __init__(self,sigma,L_Alfa,**kwargs):
+        super().__init__(**kwargs)
+        self.L_Alfa = L_Alfa
+        self.sigma = sigma    
+    def eval_cell(self, v, x, ufc_cell):
+        L_Alfa = self.L_Alfa
+        sigma  = self.sigma 
+        alfa = L_Alfa[ufc_cell.index]
+        v[0] = 0.5-0.5*special.erf((alfa-0.5)/(np.sqrt(2)*sigma))            
+    def value_shape(self):
+        return ()         
     
 #Case ei for Linear variable.
 class Fun_ei_Lineal(dolfin.UserExpression):  
@@ -632,6 +646,8 @@ def Caso_BEMFEMBEM(PQR,MeshV,es,ei,em,ks,ki,kp,Tol,Res,Va,Asb,FileA):
         print("Case BEM/FEM/BEM(Linear_Variable)")
     elif Va=='VTH':
         print("Case BEM/FEM/BEM(Variable_Tangent_Hyperbolic)")  
+    elif Va=='VCG':
+        print("Case BEM/FEM/BEM(Variable_Convolution_Gaussian)")  
   
     # Choice of border operator assemblies     
     if Asb == 'fmm':
@@ -753,7 +769,11 @@ def Caso_BEMFEMBEM(PQR,MeshV,es,ei,em,ks,ki,kp,Tol,Res,Va,Asb,FileA):
         S = Fun_ei_Tangente_Hiperbolica(kp,L_Alfa,degree=0)
         EI = es+(em-es)*S
         K = (1-S)*(es*ks**2)
-
+    elif Va=='VCG': #Case of variable by Convolution Gaussian.
+        L_Alfa = Lista_Alfa(FileA) 
+        S = Fun_ei_Convolucion_Gaussiana(kp,L_Alfa,degree=0)              
+        EI = es+(em-es)*S
+        K = (1-S)*(es*ks**2)          
     #Construction left 3x3 matrix
     from bempp.api.external.fenics import FenicsOperator
     from scipy.sparse.linalg import LinearOperator
@@ -814,7 +834,7 @@ def Caso_BEMFEMBEM(PQR,MeshV,es,ei,em,ks,ki,kp,Tol,Res,Va,Asb,FileA):
     # Solution by GMRES.
     from scipy.sparse.linalg import gmres
     start1 = time.time()
-    soln, info = gmres(blocked, rhs, M=P, callback=count_iterations,tol=Tol, maxiter=3000, restart=Res)  
+    soln, info = gmres(blocked, rhs, M=P, callback=count_iterations,tol=Tol, maxiter=3000, restart=Res) #120 300 
     end1 = time.time() 
 
     # Time to solve the equation.
@@ -873,14 +893,23 @@ def Caso_BEMBEM_Cavidades(PQR,Mesh1,Mesh_C,es,em,ks,Tol,Res,SF,Asb):
     vertices_0,faces_0 = read_off(Mesh1) 
     #In case the mesh has small gaps, with trimesh the information of the original mesh without the gaps is obtained.
     meshSP = trimesh.Trimesh(vertices = vertices_0, faces= faces_0 ) 
-    mesh_split = meshSP.split()
-    print("Found %i meshes"%len(mesh_split))  #1 mesh means no cavity.
+    mesh_split_0 = meshSP.split()
 
-    vertices_2 = mesh_split[0].vertices 
-    faces_2  = mesh_split[0].faces 
+    vertices_2 = mesh_split_0[0].vertices 
+    faces_2  = mesh_split_0[0].faces 
     grid2 = bempp.api.grid.grid.Grid(vertices_2.transpose(), faces_2.transpose()) #Creation of the surface mesh of the solute-solvent interface.
-
-    if len(Mesh_C)==0:
+    
+    #Cavity mesh case
+    if Mesh1==Mesh_C:
+        mesh_split=mesh_split_0
+    else:        
+        vertices_00,faces_00 = read_off(Mesh_C) 
+        #In case the mesh has small gaps, with trimesh the information of the original mesh without the gaps is obtained.
+        meshSP = trimesh.Trimesh(vertices = vertices_00, faces= faces_00 ) 
+        mesh_split = meshSP.split()
+    print("Found %i meshes"%len(mesh_split))  #1 mesh means no cavity.    
+    
+    if len(mesh_split)>=2:        
         #Sort surface meshes of the cavities by number of vertices.
         LMS = []
         for i in range(len(mesh_split)):
@@ -893,8 +922,9 @@ def Caso_BEMBEM_Cavidades(PQR,Mesh1,Mesh_C,es,em,ks,Tol,Res,SF,Asb):
                 MS = MS + mesh_split[IMS[i+2]]
         vertices_1 = MS.vertices 
         faces_1 = MS.faces  
-    else:    
-        vertices_1,faces_1 =read_off(Mesh_C)  #Optional cavity mesh if in an '.off' file.
+    elif len(mesh_split)==1:   #Optional cavity mesh if in an '.off' file.    
+        vertices_1 = mesh_split[0].vertices 
+        faces_1 = mesh_split[0].faces 
     grid1 = bempp.api.grid.grid.Grid(vertices_1.transpose(), faces_1.transpose()) #Creation of the surface mesh with cavities.    
    
     #Generate functional spaces of the potential and its derivative for the domain Ωm and Ωi
@@ -1371,7 +1401,7 @@ def Caso_BEMFEMBEM_Cavidades(PQR,MeshV,Mesh_C,es,ei,em,ks,ki,kp,Tol,Res,Va,Asb,F
     # Solution by GMRES.
     from scipy.sparse.linalg import gmres
     start1 = time.time()
-    soln, info = gmres(blocked, rhs, M=P, callback=count_iterations,tol=Tol, maxiter=3000, restart=Res)  
+    soln, info = gmres(blocked, rhs, M=P, callback=count_iterations,tol=Tol, maxiter=3000, restart=Res)   #120 300
     end1 = time.time() 
 
     # Time to solve the equation.
